@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Users, School, GraduationCap, ArrowRight, Globe, Shield, Zap } from "lucide-react";
+import { BookOpen, Users, School, GraduationCap, ArrowRight, Globe, Shield, Zap, Crown, Award, Play, ExternalLink, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -12,26 +12,19 @@ const stats = [
 ];
 
 const features = [
-  {
-    icon: BookOpen,
-    title: "Digital Learning",
-    description: "Access thousands of curriculum-aligned materials, assignments, and resources from any device.",
-  },
-  {
-    icon: Shield,
-    title: "Secure & Reliable",
-    description: "Enterprise-grade security protects student data and ensures platform availability nationwide.",
-  },
-  {
-    icon: Globe,
-    title: "Nationwide Reach",
-    description: "Connecting every district and province across Rwanda with a unified education platform.",
-  },
-  {
-    icon: Zap,
-    title: "Real-time Analytics",
-    description: "Track student progress, school performance, and national education metrics instantly.",
-  },
+  { icon: BookOpen, title: "Digital Learning", description: "Access thousands of curriculum-aligned materials, assignments, and resources from any device." },
+  { icon: Shield, title: "Secure & Reliable", description: "Enterprise-grade security protects student data and ensures platform availability nationwide." },
+  { icon: Globe, title: "Nationwide Reach", description: "Connecting every district and province across Rwanda with a unified education platform." },
+  { icon: Zap, title: "Real-time Analytics", description: "Track student progress, school performance, and national education metrics instantly." },
+  { icon: Crown, title: "Premium Content", description: "Upgrade for full access to video tutorials, downloadable resources, and professional certificates." },
+  { icon: Award, title: "Certificates", description: "Earn verifiable digital certificates with QR codes upon completing courses." },
+];
+
+const premiumPerks = [
+  { icon: Play, label: "Full Video Tutorials" },
+  { icon: BookOpen, label: "All Courses Unlocked" },
+  { icon: Award, label: "Digital Certificates" },
+  { icon: Shield, label: "Downloadable Resources" },
 ];
 
 const Index = () => {
@@ -62,7 +55,7 @@ const Index = () => {
             <div className="flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
               <Link to="/register">
                 <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold gap-2 shadow-glow-green">
-                  Get Started <ArrowRight className="w-4 h-4" />
+                  Get Started Free <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/login">
@@ -80,11 +73,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className="bg-card rounded-xl p-6 shadow-lg border animate-fade-up"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
+              <div key={stat.label} className="bg-card rounded-xl p-6 shadow-lg border animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
                 <stat.icon className="w-8 h-8 text-primary mb-3" />
                 <p className="font-display text-2xl sm:text-3xl font-bold text-foreground">{stat.value}</p>
                 <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
@@ -105,12 +94,9 @@ const Index = () => {
               A comprehensive platform designed to support every aspect of education management.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((f, i) => (
-              <div
-                key={f.title}
-                className="bg-card border rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
-              >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f) => (
+              <div key={f.title} className="bg-card border rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   <f.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
@@ -118,6 +104,38 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Section */}
+      <section className="py-24 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/20 text-accent-foreground text-sm font-semibold mb-4">
+                <Crown className="w-4 h-4" /> Premium Plan
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
+                Unlock Everything for <span className="text-accent">10,000 RWF</span>
+              </h2>
+              <p className="text-muted-foreground text-lg">2 months of full access to all courses, tutorials, and certificates.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {premiumPerks.map((p) => (
+                <div key={p.label} className="bg-card border rounded-xl p-5 text-center hover:shadow-md transition-shadow">
+                  <p.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <p className="font-medium text-sm text-foreground">{p.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link to="/register">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold gap-2">
+                  Start Learning <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -134,7 +152,7 @@ const Index = () => {
           <div className="flex justify-center gap-4">
             <Link to="/register">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold gap-2">
-                Register Your School <ArrowRight className="w-4 h-4" />
+                Register Now <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
@@ -144,12 +162,35 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-foreground text-background/70 py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 font-display font-bold text-lg text-background">
-              <GraduationCap className="w-6 h-6 text-accent" />
-              RWE<span className="text-accent">NET</span>
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 font-display font-bold text-lg text-background mb-3">
+                <GraduationCap className="w-6 h-6 text-accent" />
+                RWE<span className="text-accent">NET</span>
+              </div>
+              <p className="text-sm text-background/50">Rwanda's national education platform connecting students, teachers, and schools.</p>
             </div>
-            <p className="text-sm">© 2026 Rwanda Education Network. All rights reserved.</p>
+            <div>
+              <h4 className="font-display font-semibold text-background mb-3">Quick Links</h4>
+              <div className="space-y-2 text-sm">
+                <Link to="/login" className="block hover:text-accent transition-colors">Sign In</Link>
+                <Link to="/register" className="block hover:text-accent transition-colors">Register</Link>
+                <a href="#features" className="block hover:text-accent transition-colors">Features</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-display font-semibold text-background mb-3">Developer</h4>
+              <a href="https://barakadevx.netlify.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                <ExternalLink className="w-4 h-4" /> barakadevx.netlify.app
+              </a>
+              <p className="text-xs text-background/40 mt-2">Built with <Heart className="w-3 h-3 inline text-destructive" /> by BarakaDevX</p>
+            </div>
+          </div>
+          <div className="border-t border-background/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs">© 2026 Rwanda Education Network. All rights reserved.</p>
+            <a href="https://barakadevx.netlify.app" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-accent transition-colors">
+              Developed by BarakaDevX
+            </a>
           </div>
         </div>
       </footer>
